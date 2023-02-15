@@ -1,0 +1,194 @@
+% A simple style file for formatting resumes.
+%
+% By: Robert Vogel
+% 
+
+
+\setlength{\parindent}{0em}
+\setlength{\partopsep}{0em}
+\setlength{\parskip}{2ex}
+
+\renewcommand{\thefootnote}{$\fnsymbol{footnote}$}
+
+% =======================================
+% command: programPackage
+% =======================================
+% unique font to distinguish program or package names from
+%   normal text
+%
+% Args:
+%   * program or package name
+
+\newcommand{\programPackage}[1]{\texttt{#1}}
+
+
+% =======================================
+% environment: rtitle 
+% =======================================
+% Configuring the resume title using LaTeX tabular
+%
+% Args:
+%     * Individual's first and last name
+% Content:
+%     * tabular, produces a two column table of contact information, e.g.
+%        email: & myname@mydomain.email \\
+%        phone: & (111) 111-1111
+
+\newenvironment{rtitle}[2]{
+    {\Huge\textsc{#1}} \hfill 
+    \begin{tabular}{rl}
+    }{
+    \end{tabular}
+}
+
+
+% =======================================
+% command: resumeSection
+% =======================================
+% Command configures section formatting.
+% 
+% Args:
+%     * Section name
+
+\newcommand{\sectionTitle}[1]{
+    {\Large \textsc{#1}}
+}
+
+\newlength{\widthsline}
+\newlength{\widthsname}
+
+\newcommand{\resumeSection}[1]{
+    \settowidth{\widthsname}{\sectionTitle{#1}}
+    \setlength{\widthsline}{\textwidth}
+    \addtolength{\widthsline}{-\widthsname}
+    \sectionTitle{#1}\,\rule{\widthsline}{0.15ex}
+}
+
+% ====================================
+% environment: position
+% ====================================
+% Environment for enumerating position or job experience
+% 
+% Args:
+%     * Name of employer / institution
+%     * Position name
+%     * Start and end dates of employment
+%     * Location of employment 
+% Content:
+%     * list environment, use the the `item' command to enumerate
+%         job responsibilities, achievements, etc.
+
+\newcommand{\itemTitle}[4]{\textbf{#1}\hfill{#3}\newline\emph{#2}\hfill\emph{#4}}
+
+\newenvironment{mylist}{
+    \begin{list}{$\triangleright$}{
+        \settowidth{\labelwidth}{$\triangleright$}
+        \setlength{\leftmargin}{3\labelwidth}
+        \setlength{\labelsep}{\labelwidth}
+        \setlength{\rightmargin}{\leftmargin} 
+        \setlength{\itemsep}{0.1ex} % set inter item distance
+        \setlength{\parsep}{0ex} % set inter and intra list item paragraph distance
+        \setlength{\topsep}{0ex} % set distance between job line and list items
+    }
+}{
+    \end{list}
+}
+
+\newenvironment{position}[4]{
+    \itemTitle{#1}{#2}{#3}{#4}
+
+    \begin{mylist}
+    }{
+    \end{mylist}
+}
+
+% ====================================
+% environment: publications
+% ====================================
+% a list environment for enumerating publications
+% 
+% Args: 
+%     * no arguments
+% Content:
+%     * list environment, use the the `item' command to enumerate
+%         publications
+
+\renewcommand{\cite}[1]{[\ref{#1}]}
+
+
+\newenvironment{publications}{
+    \newcounter{publicationcount}
+    \begin{list}{[\thepublicationcount]}{
+        \usecounter{publicationcount}
+        \setlength{\itemindent}{0em}
+        \settowidth{\labelwidth}{9}
+        \setlength{\labelsep}{\labelwidth}
+        \newlength{\righttri}
+        \settowidth{\righttri}{$\triangleright$}
+        \setlength{\leftmargin}{2\labelwidth}
+        \addtolength{\leftmargin}{\righttri}
+        \setlength{\rightmargin}{3\righttri}
+        \setlength{\itemsep}{1ex}
+        \setlength{\parsep}{0ex}
+        \setlength{\topsep}{.25ex}
+    }
+}{
+    \end{list}
+}
+
+% ====================================
+% commands: proficiency scales
+% ====================================
+% To be used with the skills environment.  These commands provide
+%    a simple approach for communicating skill proficiency.  A
+%    footnote legend of markers will automatically be generated
+
+\newcommand{\basicknowledge}{$^*$}
+\newcommand{\priorexp}{$^{**}$}
+\newcommand{\competent}{$^{***}$}
+\newcommand{\expert}{$^{****}$}
+
+
+\footnotetext[0]{
+Proficiency scale: 
+\newblock basic ($*$), prior experience ($**$), competent ($***$), expert ($****$)
+}
+
+% ====================================
+% environment: skills
+% ====================================
+% A simple list environment for enumerating skills
+% Args:
+%     * no arguments
+% Content:
+%     * list environment, use the the `item' command to enumerate
+%         skills.  Use square brackent optional argument of item
+%         to define classes of skills, e.g. 
+%           \item[Computer Languages:] Language_1, Language_2
+
+\newenvironment{skills}{
+    \begin{list}{$\triangleright$}{
+        \setlength{\topsep}{0ex}
+        \setlength{\parsep}{0ex}
+        \setlength{\itemsep}{0.5ex}
+        \settowidth{\labelsep}{$\triangleright$}
+        \addtolength{\leftmargin}{\labelsep}
+        \setlength{\rightmargin}{3\labelsep}
+        \setlength{\itemindent}{0em}
+    }
+}{\end{list}}
+
+% ====================================
+% command: degree
+% ====================================
+% Specify earned degrees 
+%
+% Args:
+%   * Degree granting institution
+%   * Earned degree
+%   * Date degree conferred
+%   * Geographic location of in which the degree was earned
+
+\newcommand{\degree}[4]{
+    \itemTitle{#1}{#2}{#3}{#4}}
+ 

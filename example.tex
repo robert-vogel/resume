@@ -1,0 +1,93 @@
+\documentclass{article}
+
+\usepackage{geometry}
+\geometry{margin=5em}
+
+\usepackage{resume}
+\begin{document}
+
+\pagestyle{empty}
+
+% ================================================
+% Resume Title
+% ================================================
+
+\begin{rtitle}{First Last Name}
+    email: & myname@mydomain.email\\
+    github: & https://github.com/myGitHubUserName\\
+    phone: & (111) 111-1111
+\end{rtitle}
+
+% ================================================
+% Selected Experience
+% ================================================
+
+\resumeSection{Selected Experience}
+\begin{position}
+    {Employer}
+    {Position}
+    {Date, e.g. Sep. 2021 - May 2023}
+    {City, State, Country (if relevant)}
+    \item First line item
+    \item Second line item
+\end{position}
+
+\begin{position}
+    {Employer}
+    {Position}
+    {Date, e.g. Jan. 2019 - Sep.2021}
+    {City, State, Country (if relevant)}
+    \item First line item
+    \item Published \cite{myPublication} and \cite{myPublication2}
+\end{position}
+
+% ================================================
+% Selected Publications 
+% ================================================
+
+\resumeSection{Selected Publications}
+
+\begin{publications}
+
+\item \label{myPublication} \textbf{M.Y.~Name}, 
+    M.Y.~Collague1, and
+    M.Y.~Advisor.
+\newblock This is the title
+\newblock {\em Journal}, 1(2), Year.
+
+\item \label{myPublication2} 
+    M.Y.~Colleague1\footnote[2]{Co-first author},
+    \textbf{M.Y.~Name}\footnotemark[2], and
+    M.Y.~Advisor.
+\newblock This is the title
+\newblock {\em Journal}, 1(2), Year.
+
+\end{publications}
+
+
+% ================================================
+% Skills & tools
+% ================================================
+
+\resumeSection{Skills \& Tools}
+
+\begin{skills}
+    \item[Computer Languages:] Lang1\competent, Lang2\priorexp, 
+        Lang3\basicknowledge
+    \item[Skills \& Tools:] Skill1, \programPackage{programPackage1}
+\end{skills}
+
+% ================================================
+% Earned academic degrees or education
+% ================================================
+
+\resumeSection{Academic Degrees}
+
+\degree{Institute}
+{Degree, e.g. B.S. Physics}
+{Date}
+{City, State, Country (if relevant)}
+
+
+
+\end{document}
